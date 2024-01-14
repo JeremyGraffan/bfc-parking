@@ -1,0 +1,46 @@
+version: "3.7"
+
+volumes:
+  bfc-node-red:
+  bfc-database:
+  bfc-plates:
+
+services:
+  node-red:
+    image: nodered/node-red:latest
+    container_name: bfc-node-red
+    environment:
+      - TZ=Europe/Paris
+    ports:
+      - 1880:1880
+    restart: unless-stopped
+    volumes:
+      - bfc-node-red:/data
+  
+  plate-api:
+    image: neicureuil/plate-api:latest
+    container_name: bfc-plate-api
+    ports:
+      - 1881:80
+    restart: unless-stopped
+    volumes:
+      - bfc-plates:/app/datas
+    
+  database:
+    image: postgres:latest
+    container_name: bfc-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_DB: bfc
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data/pgdata 
+    volumes:
+      - bfc-database:/var/lib/postgresql/data
+      
+  adminer:
+    image: adminer
+    container_name: bfc-adminer
+    restart: unless-stopped
+    ports:
+      - 8080:8080
