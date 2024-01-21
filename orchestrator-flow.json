@@ -7,17 +7,173 @@
         "info": ""
     },
     {
+        "id": "8fcd2a01c1a2db3b",
+        "type": "group",
+        "z": "f6f2187d.f17ca8",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f51ea7d6db2bee38",
+            "11553e9093792e80",
+            "a57311efcd3c2fe0"
+        ],
+        "x": 14,
+        "y": 19,
+        "w": 752,
+        "h": 82
+    },
+    {
+        "id": "26b72f778717a3fe",
+        "type": "group",
+        "z": "f6f2187d.f17ca8",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "f6e746d0ed87d203",
+            "a4a6a9ea7b33b4df",
+            "74093195494ed89e",
+            "5cd484ca421cb0bd",
+            "e8bff8375d336b1b",
+            "3926444cac573577",
+            "4a0142c965826c0f",
+            "bdd0057d14224519",
+            "ee098bb491234e8c",
+            "83a5cb90f14980f0",
+            "8a4c63dd0b81efbc",
+            "5d542dd290636100",
+            "2b05c5c0238015a1",
+            "17f401b1d462dbe0",
+            "fd1f55483a62eba7",
+            "4c3a561f5acabe3d",
+            "99aa80e2b98ca26b",
+            "c10f92f45398d2b8",
+            "65943e9edb452702",
+            "d51aa438646a89db"
+        ],
+        "x": 14,
+        "y": 119,
+        "w": 1312,
+        "h": 502
+    },
+    {
+        "id": "1718a65c22cab474",
+        "type": "group",
+        "z": "f6f2187d.f17ca8",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "38d87fe4de155a3b",
+            "5b645662ef48e017",
+            "9e3d4b5aeadca783",
+            "81dc2beb82536765",
+            "ab7ff942db929b42",
+            "c49102af3f548704",
+            "3dd6737de923142d"
+        ],
+        "x": 14,
+        "y": 639,
+        "w": 1312,
+        "h": 142
+    },
+    {
+        "id": "35d7d593a6dad1ad",
+        "type": "group",
+        "z": "f6f2187d.f17ca8",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "5c8d20c7a03b3c16",
+            "6287c94be7a47ed8",
+            "18ccd57650e3fa16",
+            "65dc1c39ec4ad434",
+            "fe0a5b95354486c4",
+            "e2cb439550584cd6",
+            "23cb75d996e48b12",
+            "8de2f11e5124d041",
+            "c64819de413d037a",
+            "03bb6f07019e8e71",
+            "5d3316f4ffeb490f",
+            "c7e834f9569b9c48"
+        ],
+        "x": 14,
+        "y": 819,
+        "w": 1472,
+        "h": 222
+    },
+    {
+        "id": "469f1bc00759a067",
+        "type": "group",
+        "z": "f6f2187d.f17ca8",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "1d2e5dac4c536d86",
+            "eb0d9d7e7113b946",
+            "1a6506286a4382d8",
+            "e800dc3471e84449",
+            "421218c94d09bcae",
+            "14b9f4150d0ae3f2",
+            "6f7d7f178b63e5f3",
+            "aed13eab3950456a",
+            "af058c745e7b0aa5",
+            "fc6b5d00167ad540",
+            "a941df4cb15ed18e",
+            "684a50d444d45307",
+            "8682254c3ea9be19"
+        ],
+        "x": 14,
+        "y": 1079,
+        "w": 1692,
+        "h": 262
+    },
+    {
         "id": "f51ea7d6db2bee38",
         "type": "postgresql",
         "z": "f6f2187d.f17ca8",
+        "g": "8fcd2a01c1a2db3b",
         "name": "Get all authorizations",
         "query": "SELECT * FROM \"authorization\";",
         "postgreSQLConfig": "fbb8a647422d5e27",
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 400,
-        "y": 140,
+        "x": 380,
+        "y": 60,
         "wires": [
             [
                 "a57311efcd3c2fe0"
@@ -28,13 +184,14 @@
         "id": "11553e9093792e80",
         "type": "http in",
         "z": "f6f2187d.f17ca8",
+        "g": "8fcd2a01c1a2db3b",
         "name": "Get all authorizations",
         "url": "/api/authorizations",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 120,
-        "y": 140,
+        "x": 140,
+        "y": 60,
         "wires": [
             [
                 "f51ea7d6db2bee38"
@@ -45,24 +202,26 @@
         "id": "a57311efcd3c2fe0",
         "type": "http response",
         "z": "f6f2187d.f17ca8",
+        "g": "8fcd2a01c1a2db3b",
         "name": "Http response OK",
         "statusCode": "200",
         "headers": {},
-        "x": 670,
-        "y": 140,
+        "x": 650,
+        "y": 60,
         "wires": []
     },
     {
         "id": "f6e746d0ed87d203",
         "type": "http in",
         "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
         "name": "Is plate authorized",
         "url": "/api/is-authorized",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 110,
-        "y": 220,
+        "x": 130,
+        "y": 160,
         "wires": [
             [
                 "5cd484ca421cb0bd"
@@ -73,17 +232,18 @@
         "id": "a4a6a9ea7b33b4df",
         "type": "postgresql",
         "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
         "name": "Get all authorizations",
         "query": "SELECT * FROM \"authorization\" WHERE plate = $1;",
         "postgreSQLConfig": "fbb8a647422d5e27",
         "split": false,
         "rowsPerMsg": 1,
         "outputs": 1,
-        "x": 860,
-        "y": 220,
+        "x": 820,
+        "y": 160,
         "wires": [
             [
-                "3926444cac573577"
+                "99aa80e2b98ca26b"
             ]
         ]
     },
@@ -91,6 +251,7 @@
         "id": "74093195494ed89e",
         "type": "function",
         "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
         "name": "Prepare request",
         "func": "msg.params = [ msg.req.query.plate ];\nreturn msg;",
         "outputs": 1,
@@ -99,8 +260,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
-        "y": 220,
+        "x": 600,
+        "y": 160,
         "wires": [
             [
                 "a4a6a9ea7b33b4df"
@@ -111,6 +272,386 @@
         "id": "5cd484ca421cb0bd",
         "type": "switch",
         "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Has property plate",
+        "property": "req.query",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "plate",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "74093195494ed89e"
+            ],
+            [
+                "e8bff8375d336b1b"
+            ]
+        ]
+    },
+    {
+        "id": "e8bff8375d336b1b",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Http response bad request",
+        "statusCode": "400",
+        "headers": {},
+        "x": 640,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3926444cac573577",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Has sql response",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 190,
+        "y": 320,
+        "wires": [
+            [
+                "ee098bb491234e8c"
+            ],
+            [
+                "bdd0057d14224519"
+            ]
+        ]
+    },
+    {
+        "id": "4a0142c965826c0f",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Http response OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1210,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "bdd0057d14224519",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Prepare unauthorized response",
+        "func": "msg.payload = {\n    plate: msg.params[0],\n    authorized: false\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 360,
+        "wires": [
+            [
+                "4a0142c965826c0f"
+            ]
+        ]
+    },
+    {
+        "id": "ee098bb491234e8c",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Check valid date",
+        "func": "// Convert SQL date string to Date object\nconst sqlDate = new Date(msg.payload[0].expiration);\n\n// Get current date\nconst currentDate = new Date();\n\n// Compare dates\nif (sqlDate.getTime() > currentDate.getTime()) {\n    msg.payload[0].dateValid = true;\n} else if (sqlDate.getTime() < currentDate.getTime()) {\n    msg.payload[0].dateValid = false;\n} \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "83a5cb90f14980f0"
+            ]
+        ]
+    },
+    {
+        "id": "83a5cb90f14980f0",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Not expired date",
+        "property": "payload[0].dateValid",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 660,
+        "y": 300,
+        "wires": [
+            [
+                "2b05c5c0238015a1"
+            ],
+            [
+                "bdd0057d14224519"
+            ]
+        ]
+    },
+    {
+        "id": "8a4c63dd0b81efbc",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Prepare authorized response",
+        "func": "msg.payload = {\n    plate: msg.payload.plate,\n    authorized: true,\n    model: msg.payload.carModel,\n    color: msg.payload.carColor\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 580,
+        "wires": [
+            [
+                "4a0142c965826c0f"
+            ]
+        ]
+    },
+    {
+        "id": "5d542dd290636100",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Get plate model",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 200,
+        "y": 520,
+        "wires": [
+            [
+                "fd1f55483a62eba7"
+            ]
+        ]
+    },
+    {
+        "id": "2b05c5c0238015a1",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Prepare model request",
+        "func": "msg.url = \"http://plate-api:80/plate/info?plateId=\" + msg.payload[0].plate\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 280,
+        "wires": [
+            [
+                "d51aa438646a89db"
+            ]
+        ]
+    },
+    {
+        "id": "17f401b1d462dbe0",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Format response",
+        "func": "msg.payload = JSON.parse(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 560,
+        "wires": [
+            [
+                "8a4c63dd0b81efbc"
+            ]
+        ]
+    },
+    {
+        "id": "fd1f55483a62eba7",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Exist",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "else"
+            },
+            {
+                "t": "cont",
+                "v": "Not found",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 520,
+        "wires": [
+            [
+                "4c3a561f5acabe3d"
+            ],
+            [
+                "17f401b1d462dbe0"
+            ]
+        ]
+    },
+    {
+        "id": "4c3a561f5acabe3d",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "Format response (not found)",
+        "func": "msg.payload = {\n    plate: msg.req.query.plate,\n    authorized: true,\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 500,
+        "wires": [
+            [
+                "4a0142c965826c0f"
+            ]
+        ]
+    },
+    {
+        "id": "99aa80e2b98ca26b",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "c10f92f45398d2b8"
+        ],
+        "x": 955,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c10f92f45398d2b8",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "link in 1",
+        "links": [
+            "99aa80e2b98ca26b"
+        ],
+        "x": 65,
+        "y": 320,
+        "wires": [
+            [
+                "3926444cac573577"
+            ]
+        ]
+    },
+    {
+        "id": "65943e9edb452702",
+        "type": "link in",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "link in 2",
+        "links": [
+            "d51aa438646a89db"
+        ],
+        "x": 75,
+        "y": 520,
+        "wires": [
+            [
+                "5d542dd290636100"
+            ]
+        ]
+    },
+    {
+        "id": "d51aa438646a89db",
+        "type": "link out",
+        "z": "f6f2187d.f17ca8",
+        "g": "26b72f778717a3fe",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "65943e9edb452702"
+        ],
+        "x": 1085,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "5b645662ef48e017",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "g": "1718a65c22cab474",
+        "name": "Post verbalization",
+        "url": "/api/verbalization",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 680,
+        "wires": [
+            [
+                "9e3d4b5aeadca783"
+            ]
+        ]
+    },
+    {
+        "id": "9e3d4b5aeadca783",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "g": "1718a65c22cab474",
         "name": "Has property plate",
         "property": "req.query",
         "propertyType": "msg",
@@ -128,32 +669,281 @@
         "repair": false,
         "outputs": 2,
         "x": 350,
-        "y": 220,
+        "y": 680,
         "wires": [
             [
-                "74093195494ed89e"
+                "3dd6737de923142d"
             ],
             [
-                "e8bff8375d336b1b"
+                "81dc2beb82536765"
             ]
         ]
     },
     {
-        "id": "e8bff8375d336b1b",
+        "id": "81dc2beb82536765",
         "type": "http response",
         "z": "f6f2187d.f17ca8",
+        "g": "1718a65c22cab474",
         "name": "Http response bad request",
         "statusCode": "400",
         "headers": {},
-        "x": 660,
-        "y": 300,
+        "x": 600,
+        "y": 740,
         "wires": []
     },
     {
-        "id": "3926444cac573577",
+        "id": "38d87fe4de155a3b",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "1718a65c22cab474",
+        "name": "Prepare request",
+        "func": "msg.params = [ msg.req.query.plate, msg.req.query.reason, null ];\n\nif (msg.req.hasOwnProperty(\"files\") && msg.req.files != null) {\n    var f = msg.req.files[0];\n    if (f != null && f.buffer != null && Buffer.isBuffer(f.buffer)) {\n        msg.params[2] = f.buffer.toString('base64');\n        console.log(msg.params[2].length);\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 680,
+        "wires": [
+            [
+                "ab7ff942db929b42"
+            ]
+        ]
+    },
+    {
+        "id": "ab7ff942db929b42",
+        "type": "postgresql",
+        "z": "f6f2187d.f17ca8",
+        "g": "1718a65c22cab474",
+        "name": "Add verbalization",
+        "query": "INSERT INTO \"verbalization\" (plate, reason, image, date) VALUES ($1, $2, $3, NOW());",
+        "postgreSQLConfig": "fbb8a647422d5e27",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1010,
+        "y": 680,
+        "wires": [
+            [
+                "c49102af3f548704"
+            ]
+        ]
+    },
+    {
+        "id": "c49102af3f548704",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "g": "1718a65c22cab474",
+        "name": "Http response OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1210,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "3dd6737de923142d",
         "type": "switch",
         "z": "f6f2187d.f17ca8",
-        "name": "Has sql response",
+        "g": "1718a65c22cab474",
+        "name": "Has property plate",
+        "property": "req.query",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "reason",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 680,
+        "wires": [
+            [
+                "38d87fe4de155a3b"
+            ],
+            [
+                "81dc2beb82536765"
+            ]
+        ]
+    },
+    {
+        "id": "5d3316f4ffeb490f",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Get verbalizations list",
+        "url": "/api/verbalizations",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 860,
+        "wires": [
+            [
+                "5c8d20c7a03b3c16"
+            ]
+        ]
+    },
+    {
+        "id": "5c8d20c7a03b3c16",
+        "type": "postgresql",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Get all verbalizations",
+        "query": "SELECT id, plate, reason date FROM \"verbalization\";",
+        "postgreSQLConfig": "fbb8a647422d5e27",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 380,
+        "y": 860,
+        "wires": [
+            [
+                "6287c94be7a47ed8"
+            ]
+        ]
+    },
+    {
+        "id": "6287c94be7a47ed8",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Http response OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 610,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "c7e834f9569b9c48",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Get verbalizations image",
+        "url": "/api/verbalization",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 940,
+        "wires": [
+            [
+                "18ccd57650e3fa16"
+            ]
+        ]
+    },
+    {
+        "id": "18ccd57650e3fa16",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Has property id",
+        "property": "req.query",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "id",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 380,
+        "y": 940,
+        "wires": [
+            [
+                "e2cb439550584cd6"
+            ],
+            [
+                "65dc1c39ec4ad434"
+            ]
+        ]
+    },
+    {
+        "id": "65dc1c39ec4ad434",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Http response bad request",
+        "statusCode": "400",
+        "headers": {},
+        "x": 640,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "fe0a5b95354486c4",
+        "type": "postgresql",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Get verbalization image",
+        "query": "SELECT image FROM \"verbalization\" WHERE id = $1;",
+        "postgreSQLConfig": "fbb8a647422d5e27",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 810,
+        "y": 940,
+        "wires": [
+            [
+                "8de2f11e5124d041"
+            ]
+        ]
+    },
+    {
+        "id": "e2cb439550584cd6",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Prepare request",
+        "func": "msg.params = [ msg.req.query.id ];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 940,
+        "wires": [
+            [
+                "fe0a5b95354486c4"
+            ]
+        ]
+    },
+    {
+        "id": "23cb75d996e48b12",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Http response not found",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1190,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "8de2f11e5124d041",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Has value",
         "property": "payload",
         "propertyType": "msg",
         "rules": [
@@ -167,78 +957,83 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1090,
-        "y": 220,
+        "x": 1000,
+        "y": 940,
         "wires": [
             [
-                "ee098bb491234e8c"
+                "c64819de413d037a"
             ],
             [
-                "bdd0057d14224519"
+                "23cb75d996e48b12"
             ]
         ]
     },
     {
-        "id": "4a0142c965826c0f",
+        "id": "c64819de413d037a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
+        "name": "Prepare response",
+        "func": "if (msg.payload[0].image != null) {\n    let base64String = msg.payload[0].image;\n    let buffer = Buffer.from(base64String, 'base64');\n    msg.payload = buffer;\n} else {\n    msg.payload = null;\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 940,
+        "wires": [
+            [
+                "03bb6f07019e8e71"
+            ]
+        ]
+    },
+    {
+        "id": "03bb6f07019e8e71",
         "type": "http response",
         "z": "f6f2187d.f17ca8",
+        "g": "35d7d593a6dad1ad",
         "name": "Http response OK",
         "statusCode": "200",
-        "headers": {},
-        "x": 2790,
-        "y": 280,
+        "headers": {
+            "content-type": "image/png"
+        },
+        "x": 1370,
+        "y": 940,
         "wires": []
     },
     {
-        "id": "bdd0057d14224519",
-        "type": "function",
+        "id": "1d2e5dac4c536d86",
+        "type": "http in",
         "z": "f6f2187d.f17ca8",
-        "name": "Prepare unauthorized response",
-        "func": "msg.payload = {\n    plate: msg.params[0],\n    authorized: false\n};\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1370,
-        "y": 280,
+        "g": "469f1bc00759a067",
+        "name": "Register new authorization",
+        "url": "/api/register",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 1120,
         "wires": [
             [
-                "4a0142c965826c0f"
+                "eb0d9d7e7113b946"
             ]
         ]
     },
     {
-        "id": "ee098bb491234e8c",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Check valid date",
-        "func": "// Convert SQL date string to Date object\nconst sqlDate = new Date(msg.payload[0].expiration);\n\n// Get current date\nconst currentDate = new Date();\n\n// Compare dates\nif (sqlDate.getTime() > currentDate.getTime()) {\n    msg.payload[0].dateValid = true;\n} else if (sqlDate.getTime() < currentDate.getTime()) {\n    msg.payload[0].dateValid = false;\n} \nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1330,
-        "y": 220,
-        "wires": [
-            [
-                "83a5cb90f14980f0"
-            ]
-        ]
-    },
-    {
-        "id": "83a5cb90f14980f0",
+        "id": "eb0d9d7e7113b946",
         "type": "switch",
         "z": "f6f2187d.f17ca8",
-        "name": "Not expired date",
-        "property": "payload[0].dateValid",
+        "g": "469f1bc00759a067",
+        "name": "Has property plate",
+        "property": "req.query",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "true"
+                "t": "hask",
+                "v": "plate",
+                "vt": "str"
             },
             {
                 "t": "else"
@@ -247,41 +1042,66 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1560,
-        "y": 220,
+        "x": 370,
+        "y": 1120,
         "wires": [
             [
-                "2b05c5c0238015a1"
+                "e800dc3471e84449"
             ],
             [
-                "bdd0057d14224519"
+                "1a6506286a4382d8"
             ]
         ]
     },
     {
-        "id": "8a4c63dd0b81efbc",
-        "type": "function",
+        "id": "1a6506286a4382d8",
+        "type": "http response",
         "z": "f6f2187d.f17ca8",
-        "name": "Prepare authorized response",
-        "func": "msg.payload = {\n    plate: msg.payload.plate,\n    authorized: true,\n    model: msg.payload.carModel,\n    color: msg.payload.carColor\n};\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 2510,
-        "y": 220,
+        "g": "469f1bc00759a067",
+        "name": "Http response bad request",
+        "statusCode": "400",
+        "headers": {},
+        "x": 620,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "e800dc3471e84449",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "g": "469f1bc00759a067",
+        "name": "Has property date",
+        "property": "req.query",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "hask",
+                "v": "date",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 590,
+        "y": 1120,
         "wires": [
             [
-                "4a0142c965826c0f"
+                "14b9f4150d0ae3f2"
+            ],
+            [
+                "1a6506286a4382d8"
             ]
         ]
     },
     {
-        "id": "5d542dd290636100",
+        "id": "421218c94d09bcae",
         "type": "http request",
         "z": "f6f2187d.f17ca8",
+        "g": "469f1bc00759a067",
         "name": "Get plate model",
         "method": "GET",
         "ret": "txt",
@@ -294,51 +1114,173 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 2040,
-        "y": 220,
+        "x": 1060,
+        "y": 1120,
         "wires": [
             [
-                "17f401b1d462dbe0"
+                "af058c745e7b0aa5"
             ]
         ]
     },
     {
-        "id": "2b05c5c0238015a1",
+        "id": "14b9f4150d0ae3f2",
         "type": "function",
         "z": "f6f2187d.f17ca8",
+        "g": "469f1bc00759a067",
         "name": "Prepare model request",
-        "func": "msg.url = \"http://plate-api:80/plate/info?plateId=\" + msg.payload[0].plate\nreturn msg;",
+        "func": "msg.values = msg.req.query;\nmsg.url = \"http://plate-api:80/plate/info?plateId=\" + msg.req.query.plate\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1810,
-        "y": 220,
+        "x": 830,
+        "y": 1120,
         "wires": [
             [
-                "5d542dd290636100"
+                "421218c94d09bcae"
             ]
         ]
     },
     {
-        "id": "17f401b1d462dbe0",
+        "id": "a941df4cb15ed18e",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "g": "469f1bc00759a067",
+        "name": "Http response OK",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1590,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "6f7d7f178b63e5f3",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "Format response",
-        "func": "msg.payload = JSON.parse(msg.payload);\nreturn msg;",
+        "g": "469f1bc00759a067",
+        "name": "Prepare request",
+        "func": "msg.params = [ msg.values.plate, msg.values.date,  msg.values.model ];\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2250,
-        "y": 220,
+        "x": 960,
+        "y": 1260,
         "wires": [
             [
-                "8a4c63dd0b81efbc"
+                "fc6b5d00167ad540"
+            ]
+        ]
+    },
+    {
+        "id": "aed13eab3950456a",
+        "type": "postgresql",
+        "z": "f6f2187d.f17ca8",
+        "g": "469f1bc00759a067",
+        "name": "Check exist",
+        "query": "SELECT id FROM \"authorization\" WHERE LOWER(plate) LIKE $1",
+        "postgreSQLConfig": "fbb8a647422d5e27",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 790,
+        "y": 1260,
+        "wires": [
+            [
+                "6f7d7f178b63e5f3"
+            ]
+        ]
+    },
+    {
+        "id": "af058c745e7b0aa5",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "g": "469f1bc00759a067",
+        "name": "Format response",
+        "func": "msg.values.model = null;\nif (msg.payload != null && msg.payload != \"Not found\") {\n    msg.values.model = JSON.parse(msg.payload).carModel;\n}\nmsg.params = [ msg.values.plate ]\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1270,
+        "y": 1120,
+        "wires": [
+            [
+                "aed13eab3950456a"
+            ]
+        ]
+    },
+    {
+        "id": "fc6b5d00167ad540",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "g": "469f1bc00759a067",
+        "name": "Already exist",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1150,
+        "y": 1260,
+        "wires": [
+            [
+                "684a50d444d45307"
+            ],
+            [
+                "8682254c3ea9be19"
+            ]
+        ]
+    },
+    {
+        "id": "684a50d444d45307",
+        "type": "postgresql",
+        "z": "f6f2187d.f17ca8",
+        "g": "469f1bc00759a067",
+        "name": "Insert authorization",
+        "query": "INSERT INTO \"authorization\" (plate, expiration, model) VALUES ($1, $2, $3);",
+        "postgreSQLConfig": "fbb8a647422d5e27",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1350,
+        "y": 1260,
+        "wires": [
+            [
+                "a941df4cb15ed18e"
+            ]
+        ]
+    },
+    {
+        "id": "8682254c3ea9be19",
+        "type": "postgresql",
+        "z": "f6f2187d.f17ca8",
+        "g": "469f1bc00759a067",
+        "name": "Update authorization",
+        "query": "UPDATE \"authorization\" SET expiration = $2, model = $3 WHERE plate = $1;",
+        "postgreSQLConfig": "fbb8a647422d5e27",
+        "split": false,
+        "rowsPerMsg": 1,
+        "outputs": 1,
+        "x": 1360,
+        "y": 1300,
+        "wires": [
+            [
+                "a941df4cb15ed18e"
             ]
         ]
     },
