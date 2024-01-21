@@ -1,0 +1,19 @@
+version: "3.7"
+
+volumes:
+  bfc-database:
+
+services:   
+  database:
+    image: postgres:latest
+    container_name: bfc-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_DB: bfc
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data/pgdata 
+    volumes:
+      - bfc-database:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
