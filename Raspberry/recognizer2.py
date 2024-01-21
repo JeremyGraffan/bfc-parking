@@ -6,11 +6,14 @@ import cv2
 import datetime
 import psycopg2
 import requests
+import io
+import base64
+import numpy
 from PIL import Image
 
 MODE = 1
 PLATE_LEN = 10
-API_ENDPOINT = "http://192.168.0.145:1880/api/verbalization"
+API_ENDPOINT = "http://192.168.212.190:1880/api/verbalization"
 TAG = "[PythonRecognizer] "
 
 REASON_PLATE = "Not authorized plate"
@@ -78,7 +81,7 @@ def connectBdd():
         print(f"Database connection error: {e}")
         return None
 
-def process_result(result):
+def process_result(result, current_frame):
     if result.isOK():
         result_json = json.loads(result.json())
         if "plates" in result_json:
@@ -97,7 +100,7 @@ def process_result(result):
                 reason = REASON_PLATE
                 real_plate = plate_text
                     
-                cursor.execute("SELECT plate, expiration, model FROM authorizations WHERE plate LIKE %s", (plate_text + '%',))
+                cursor.execute("SELECT plate, expiration, model FROM authorizations WHERE LOWER(plate) LIKE LOWER(%s)", (plate_text + '%',))
                 auth = cursor.fetchone()
                 if auth is None:
                     print(f"License Plate {plate_text} not authorized")
@@ -133,10 +136,17 @@ def process_result(result):
                         # Encode the plate and reason for URL
                         plate_encoded = requests.utils.quote(real_plate)
                         reason_encoded = requests.utils.quote(reason)
+                        # Convert the PIL image to OpenCV format and then to JPEG
+                        open_cv_image = cv2.cvtColor(numpy.array(pil_image), cv2.COLOR_RGB2BGR)
+                        retval, buffer = cv2.imencode('.jpg', open_cv_image)
+                        jpg_as_text = io.BytesIO(buffer)
                         # Create the full URL with query parameters
                         full_url = f"{API_ENDPOINT}?plate={plate_encoded}&reason={reason_encoded}"
-                        # Send the POST request
-                        response = requests.post(full_url)
+                        # Send the POST request with the image
+                        response = requests.post(
+                            full_url, 
+                            files={"image": ("image.jpg", jpg_as_text, "image/jpeg")}
+                        )
                         # Check if the request was successful
                         if response.status_code == 200:
                             print(f"Verbalization sended to the server")
@@ -238,7 +248,7 @@ if __name__ == "__main__":
         width, height=image.size
 
         result = ultimateAlprSdk.UltAlprSdkEngine_process(imageType, image.tobytes(), width, height, 0, 1)
-        process_result(result)
+        process_result(result, frame)
 
     # Release video capture
     cap.release()
