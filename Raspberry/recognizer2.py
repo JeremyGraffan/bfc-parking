@@ -5,9 +5,16 @@ import os.path
 import cv2
 import datetime
 import psycopg2
+import requests
 from PIL import Image
 
+MODE = 1
+PLATE_LEN = 10
+API_ENDPOINT = "http://192.168.0.145:1880/api/verbalization"
 TAG = "[PythonRecognizer] "
+
+REASON_PLATE = "Not authorized plate"
+REASON_MODEL = "Invalid car model"
 
 # Defines the default JSON configuration. More information at https://www.doubango.org/SDKs/anpr/docs/Configuration_options.html
 JSON_CONFIG = {
@@ -45,6 +52,9 @@ IMAGE_TYPES_MAPPING = {
 # Connexion à la base de données PostgreSQL
 conn = None
 
+# Liste des plaques traitées
+PLATE_DONE = []
+
 # Function to handle frame conversion
 def load_pil_image_from_frame(pil_image):
     if pil_image.mode in IMAGE_TYPES_MAPPING:
@@ -75,16 +85,66 @@ def process_result(result):
             for plate in result_json["plates"]:
                 cursor = conn.cursor()
                 plate_text = plate["text"].rstrip("*") 
-                cursor.execute("SELECT plate, expiration FROM authorizations WHERE plate LIKE %s", (plate_text + '%',))
+                if len(plate_text) != (PLATE_LEN - 1):
+                    continue
+                
+                if plate_text in PLATE_DONE:
+                    continue
+                    
+                PLATE_DONE.append(plate_text)
+                
+                authorized = True
+                reason = REASON_PLATE
+                real_plate = plate_text
+                    
+                cursor.execute("SELECT plate, expiration, model FROM authorizations WHERE plate LIKE %s", (plate_text + '%',))
                 auth = cursor.fetchone()
                 if auth is None:
                     print(f"License Plate {plate_text} not authorized")
+                    authorized = False
                 else:
-                    plateStr, expiration = auth
+                    plateStr, expiration, model = auth
+                    real_plate = plateStr
                     if expiration < datetime.datetime.now():
-                        print(f"License Plate {plateStr} not authorization (expired)")
+                        print(f"License Plate {real_plate} not authorization (expired)")
+                        authorized = False
                     else:
-                        print(f"License Plate {plateStr} is authorized")
+                        if MODE == 1:
+                            if "car" in plate:
+                                if "makeModelYear" in plate["car"]:
+                                    max_confidence_entry = max(plate["car"]["makeModelYear"], key=lambda x: x['confidence'])
+                                    detected_model = max_confidence_entry['make']
+                                    valid_model = detected_model == model
+                                    if valid_model:
+                                        print(f"License Plate {real_plate} is authorized (model: {detected_model} / valid: {valid_model})")
+                                    else:
+                                        print(f"License Plate {real_plate} is not authorization (model: {detected_model} / valid: {valid_model})")
+                                        authorized = False
+                                        reason = REASON_MODEL
+                                else:
+                                    print(f"License Plate {real_plate} is authorized")
+                            else:
+                                print(f"License Plate {real_plate} is authorized")
+                        else:
+                            print(f"License Plate {real_plate} is authorized")
+                
+                if MODE == 1 and authorized == False:
+                    try:
+                        # Encode the plate and reason for URL
+                        plate_encoded = requests.utils.quote(real_plate)
+                        reason_encoded = requests.utils.quote(reason)
+                        # Create the full URL with query parameters
+                        full_url = f"{API_ENDPOINT}?plate={plate_encoded}&reason={reason_encoded}"
+                        # Send the POST request
+                        response = requests.post(full_url)
+                        # Check if the request was successful
+                        if response.status_code == 200:
+                            print(f"Verbalization sended to the server")
+                        else:
+                            print(f"API Request failed with status code: {response.status_code}")
+                    except requests.RequestException as e:
+                        print(f"Error during API request: {e}")
+                
         else:
             print("No plate detected")
 
@@ -94,40 +154,28 @@ if __name__ == "__main__":
     This is the recognizer sample using python language
     """)
 
-    parser.add_argument("--video", required=True,
-                        help="Path to the video with ALPR data to recognize")
-    parser.add_argument("--assets", required=False,
-                        default="../../../assets", help="Path to the assets folder")
-    parser.add_argument("--charset", required=False, default="latin",
-                        help="Defines the recognition charset (a.k.a alphabet) value (latin, korean, chinese...)")
-    parser.add_argument("--car_noplate_detect_enabled", required=False,
-                        default=False, help="Whether to detect and return cars with no plate")
-    parser.add_argument("--ienv_enabled", required=False, default=False,
-                        help="Whether to enable Image Enhancement for Night-Vision (IENV). More info about IENV at https://www.doubango.org/SDKs/anpr/docs/Features.html#image-enhancement-for-night-vision-ienv. Default: true for x86-64 and false for ARM.")
-    parser.add_argument("--openvino_enabled", required=False, default=True,
-                        help="Whether to enable OpenVINO. Tensorflow will be used when OpenVINO is disabled")
-    parser.add_argument("--openvino_device", required=False, default="CPU",
-                        help="Defines the OpenVINO device to use (CPU, GPU, FPGA...). More info at https://www.doubango.org/SDKs/anpr/docs/Configuration_options.html#openvino-device")
-    parser.add_argument("--npu_enabled", required=False, default=True,
-                        help="Whether to enable NPU (Neural Processing Unit) acceleration")
-    parser.add_argument("--klass_lpci_enabled", required=False, default=False,
-                        help="Whether to enable License Plate Country Identification (LPCI). More info at https://www.doubango.org/SDKs/anpr/docs/Features.html#license-plate-country-identification-lpci")
-    parser.add_argument("--klass_vcr_enabled", required=False, default=False,
-                        help="Whether to enable Vehicle Color Recognition (VCR). More info at https://www.doubango.org/SDKs/anpr/docs/Features.html#vehicle-color-recognition-vcr")
-    parser.add_argument("--klass_vmmr_enabled", required=False, default=False,
-                        help="Whether to enable Vehicle Make Model Recognition (VMMR). More info at https://www.doubango.org/SDKs/anpr/docs/Features.html#vehicle-make-model-recognition-vmmr")
-    parser.add_argument("--klass_vbsr_enabled", required=False, default=False,
-                        help="Whether to enable Vehicle Body Style Recognition (VBSR). More info at https://www.doubango.org/SDKs/anpr/docs/Features.html#vehicle-body-style-recognition-vbsr")
-    parser.add_argument("--tokenfile", required=False,
-                        default="", help="Path to license token file")
-    parser.add_argument("--tokendata", required=False,
-                        default="", help="Base64 license token data")
-
+    parser.add_argument("--video", required=True, help="Path to the video with ALPR data to recognize")
+    parser.add_argument("--assets", required=False, default="../../../assets", help="Path to the assets folder")
+    parser.add_argument("--charset", required=False, default="latin", help="Defines the recognition charset (a.k.a alphabet) value (latin, korean, chinese...)")
+    parser.add_argument("--car_noplate_detect_enabled", required=False, default=False, help="Whether to detect and return cars with no plate")
+    parser.add_argument("--ienv_enabled", required=False, default=False, help="Whether to enable Image Enhancement for Night-Vision (IENV). More info about IENV at https://www.doubango.org/SDKs/anpr/docs/Features.html#image-enhancement-for-night-vision-ienv. Default: true for x86-64 and false for ARM.")
+    parser.add_argument("--openvino_enabled", required=False, default=True, help="Whether to enable OpenVINO. Tensorflow will be used when OpenVINO is disabled")
+    parser.add_argument("--openvino_device", required=False, default="CPU", help="Defines the OpenVINO device to use (CPU, GPU, FPGA...). More info at https://www.doubango.org/SDKs/anpr/docs/Configuration_options.html#openvino-device")
+    parser.add_argument("--npu_enabled", required=False, default=True, help="Whether to enable NPU (Neural Processing Unit) acceleration")
+    parser.add_argument("--klass_lpci_enabled", required=False, default=False, help="Whether to enable License Plate Country Identification (LPCI). More info at https://www.doubango.org/SDKs/anpr/docs/Features.html#license-plate-country-identification-lpci")
+    parser.add_argument("--klass_vcr_enabled", required=False, default=False, help="Whether to enable Vehicle Color Recognition (VCR). More info at https://www.doubango.org/SDKs/anpr/docs/Features.html#vehicle-color-recognition-vcr")
+    parser.add_argument("--klass_vmmr_enabled", required=False, default=False, help="Whether to enable Vehicle Make Model Recognition (VMMR). More info at https://www.doubango.org/SDKs/anpr/docs/Features.html#vehicle-make-model-recognition-vmmr")
+    parser.add_argument("--klass_vbsr_enabled", required=False, default=False, help="Whether to enable Vehicle Body Style Recognition (VBSR). More info at https://www.doubango.org/SDKs/anpr/docs/Features.html#vehicle-body-style-recognition-vbsr")
+    parser.add_argument("--tokenfile", required=False, default="", help="Path to license token file")
+    parser.add_argument("--tokendata", required=False, default="", help="Base64 license token data")
+    parser.add_argument("--mode", required=True, default=0, help="Detection mode")
     args = parser.parse_args()
 
     # Check if video exist
     if not os.path.isfile(args.video):
         raise OSError(TAG + "File doesn't exist: %s" % args.video)
+    
+    MODE = args.mode
 
     # Update JSON options using values from the command args
     JSON_CONFIG["assets_folder"] = args.assets
@@ -140,7 +188,7 @@ if __name__ == "__main__":
     JSON_CONFIG["npu_enabled"] = (args.npu_enabled == "True")
     JSON_CONFIG["klass_lpci_enabled"] = (args.klass_lpci_enabled == "True")
     JSON_CONFIG["klass_vcr_enabled"] = (args.klass_vcr_enabled == "True")
-    JSON_CONFIG["klass_vmmr_enabled"] = (args.klass_vmmr_enabled == "True")
+    JSON_CONFIG["klass_vmmr_enabled"] = (MODE == 1)
     JSON_CONFIG["klass_vbsr_enabled"] = (args.klass_vbsr_enabled == "True")
     JSON_CONFIG["license_token_file"] = args.tokenfile
     JSON_CONFIG["license_token_data"] = args.tokendata
