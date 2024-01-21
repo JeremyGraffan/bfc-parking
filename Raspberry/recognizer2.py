@@ -175,7 +175,11 @@ if __name__ == "__main__":
     if not os.path.isfile(args.video):
         raise OSError(TAG + "File doesn't exist: %s" % args.video)
     
-    MODE = args.mode
+    MODE = int(args.mode)
+    if MODE == 1:
+        print("Started in verbalization mode")
+    else:
+        print("Started in information mode")
 
     # Update JSON options using values from the command args
     JSON_CONFIG["assets_folder"] = args.assets
