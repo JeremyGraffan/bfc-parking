@@ -4,6 +4,7 @@ For the demo cloud, you need to have an os with `docker` and `docker-compose` in
 
 ## Configuration
 - Clone this repo.
+- Build the licence plate fake api docker image : `cd LicencePlateApi` then `docker build -t neicureuil/plate-api:latest /LicencePlateApi/Dockerfile` 
 - First deploy all the cloud with docker compose : `docker-compose -f docker-orchrator.yaml up -d`
 - Open nodered : `http://localhost:1880`
 - Import the flow `orchestrator-flow.json` inside nodered

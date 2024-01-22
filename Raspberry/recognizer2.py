@@ -14,6 +14,7 @@ from PIL import Image
 MODE = 1
 PLATE_LEN_MODE_0 = 10
 PLATE_LEN_MODE_1 = 7
+PLATE_LEN = PLATE_LEN_MODE_0
 API_ENDPOINT = "http://192.168.212.190:1880/api/verbalization"
 TAG = "[PythonRecognizer] "
 
@@ -90,6 +91,7 @@ def process_result(result, current_frame):
                 cursor = conn.cursor()
                 original_plate_text = plate["text"]
                 plate_text = plate["text"].rstrip("*") 
+                
                 if len(plate_text) != (PLATE_LEN - 1):
                     continue
                 
