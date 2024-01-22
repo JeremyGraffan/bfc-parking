@@ -6,7 +6,7 @@ dbname = "bfc"
 user = "user"
 password = "password"
 host = "localhost"
-sync_ip = "http://192.168.0.145:1880/api/authorizations"
+sync_ip = "http://192.168.212.190:1880/api/authorizations"
 
 # Fonction pour créer la table si elle n'existe pas
 def create_table_if_not_exists(db_conn):
@@ -34,6 +34,8 @@ def display_all_values(db_conn):
 # Fonction pour insérer ou mettre à jour les données dans la base de données
 def insert_or_update(db_conn, data):
     cursor = db_conn.cursor()
+    api_ids = [int(entry['id']) for entry in data]
+    
     for entry in data:
         id = entry['id']
         plate = entry['plate']
@@ -51,6 +53,14 @@ def insert_or_update(db_conn, data):
             cursor.execute("INSERT INTO authorizations (id, plate, expiration, model) VALUES (%s, %s, %s, %s)",
                            (id, plate, expiration, model))
 
+    # Find and delete entries not in the API response
+    cursor.execute("SELECT id FROM authorizations")
+    db_ids = [row[0] for row in cursor.fetchall()]
+    ids_to_delete = set(db_ids) - set(api_ids)
+    
+    for id in ids_to_delete:
+        cursor.execute("DELETE FROM authorizations WHERE id = %s", (id,))
+
     db_conn.commit()
     cursor.close()
 
@@ -61,8 +71,11 @@ if response.status_code == 200:
 
     # Connexion à la base de données PostgreSQL
     with psycopg2.connect(dbname=dbname, user=user, password=password, host=host) as conn:
+        print("Before sync:")
+        display_all_values(conn)
         create_table_if_not_exists(conn)
         insert_or_update(conn, data)
+        print("After sync")
         display_all_values(conn)
 else:
     print("Erreur lors de la connexion à l'API")
