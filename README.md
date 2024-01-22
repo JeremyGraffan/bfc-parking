@@ -1,4 +1,17 @@
-# Installation
+# Installation cloud
+## OS
+For the demo cloud, you need to have an os with `docker` and `docker-compose` installed.
+
+## Configuration
+- Clone this repo.
+- First deploy all the cloud with docker compose : `docker-compose -f docker-orchrator.yaml up -d`
+- Open nodered : `http://localhost:1880`
+- Import the flow `orchestrator-flow.json` inside nodered
+- Open the database web ui : `http://localhost:8080`
+- Login to the bdd with type : `postgres`, username : `user`, password : `password`, database : `bfc`, host: `database`
+- Launch the script `sql_init.sql` from the web ui in the `Import` tab.
+
+# Installation raspberry
 
 ## OS
 For the demo, you need to install a `raspbian lite (32-bit)` version.
@@ -21,6 +34,7 @@ For the demo, you need to install a `raspbian lite (32-bit)` version.
 ## Install app
 - To install the app copy the content of the folder `Raspberry` of this repository to the folder `/home/pi/bfc/app`
 - Go to the app folder `cd /home/pi/bfc/app`
+- Update the cloud ip in the file : `recognizer2.py` and `sync.py`
 - Add rights to files : `sudo chmod +x run_detect.sh run_verba.sh sync.sh`
 - Start the cache database : `docker-compose -f docker-compose.yml up -d`
 - Start the first sync manually : `./sync.sh` 
