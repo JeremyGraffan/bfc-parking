@@ -12,7 +12,8 @@ import numpy
 from PIL import Image
 
 MODE = 1
-PLATE_LEN = 10
+PLATE_LEN_MODE_0 = 10
+PLATE_LEN_MODE_1 = 7
 API_ENDPOINT = "http://192.168.212.190:1880/api/verbalization"
 TAG = "[PythonRecognizer] "
 
@@ -87,6 +88,7 @@ def process_result(result, current_frame):
         if "plates" in result_json:
             for plate in result_json["plates"]:
                 cursor = conn.cursor()
+                original_plate_text = plate["text"]
                 plate_text = plate["text"].rstrip("*") 
                 if len(plate_text) != (PLATE_LEN - 1):
                     continue
@@ -103,7 +105,7 @@ def process_result(result, current_frame):
                 cursor.execute("SELECT plate, expiration, model FROM authorizations WHERE LOWER(plate) LIKE LOWER(%s)", (plate_text + '%',))
                 auth = cursor.fetchone()
                 if auth is None:
-                    print(f"License Plate {plate_text} not authorized")
+                    print(f"License Plate {original_plate_text} not authorized")
                     authorized = False
                 else:
                     plateStr, expiration, model = auth
@@ -186,6 +188,8 @@ if __name__ == "__main__":
         raise OSError(TAG + "File doesn't exist: %s" % args.video)
     
     MODE = int(args.mode)
+    PLATE_LEN =  PLATE_LEN_MODE_0 if MODE == 0 else PLATE_LEN_MODE_1
+    
     if MODE == 1:
         print("Started in verbalization mode")
     else:
