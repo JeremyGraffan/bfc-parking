@@ -26,7 +26,7 @@
         ],
         "x": 14,
         "y": 19,
-        "w": 752,
+        "w": 732,
         "h": 82
     },
     {
@@ -206,7 +206,7 @@
         "name": "Http response OK",
         "statusCode": "200",
         "headers": {},
-        "x": 650,
+        "x": 630,
         "y": 60,
         "wires": []
     },
@@ -1182,7 +1182,7 @@
         "z": "f6f2187d.f17ca8",
         "g": "469f1bc00759a067",
         "name": "Check exist",
-        "query": "SELECT id FROM \"authorization\" WHERE LOWER(plate) LIKE $1",
+        "query": "SELECT id FROM \"authorization\" WHERE LOWER(plate) LIKE LOWER($1)",
         "postgreSQLConfig": "fbb8a647422d5e27",
         "split": false,
         "rowsPerMsg": 1,
@@ -1235,7 +1235,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 1150,
+        "x": 1130,
         "y": 1260,
         "wires": [
             [

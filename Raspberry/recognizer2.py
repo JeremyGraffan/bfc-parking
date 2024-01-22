@@ -123,9 +123,9 @@ def process_result(result, current_frame):
                                     detected_model = max_confidence_entry['make']
                                     valid_model = detected_model == model
                                     if valid_model:
-                                        print(f"License Plate {real_plate} is authorized (model: {detected_model} / valid: {valid_model})")
+                                        print(f"License Plate {real_plate} is authorized (model: {detected_model} / expected: {model} / valid: {valid_model})")
                                     else:
-                                        print(f"License Plate {real_plate} is not authorization (model: {detected_model} / valid: {valid_model})")
+                                        print(f"License Plate {real_plate} is not authorization (model: {detected_model} / expected: {model} / valid: {valid_model})")
                                         authorized = False
                                         reason = REASON_MODEL
                                 else:
